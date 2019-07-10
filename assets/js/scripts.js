@@ -1,19 +1,19 @@
 /*
 Author       : themes_mountain
-Template Name: Inspinia - Seo & Marketing Business Template
+Template Name: Abacus - Seo & Marketing Business Template
 Version      : 1.0
 */
 
 (function($) {
 	'use strict';
-	
+
 	jQuery(document).on('ready', function(){
-	
+
 		/*PRELOADER JS*/
 		$(window).on('load', function() {
 			$('.status').fadeOut();
-			$('.preloader').delay(350).fadeOut('slow'); 
-		}); 
+			$('.preloader').delay(350).fadeOut('slow');
+		});
 		/*END PRELOADER JS*/
 
 		/*START MENU JS*/
@@ -24,30 +24,30 @@ Version      : 1.0
 				$('.menu-top').removeClass('menu-shrink');
 			  }
 			});
-			
+
 			var s = $("#sticker");
-			var pos = s.position();					   
+			var pos = s.position();
 			$(window).on('scroll', function() {
 				var windowpos = $(window).scrollTop();
 				if (windowpos >= pos.top) {
 					s.addClass("stick");
 				} else {
-					s.removeClass("stick");	
+					s.removeClass("stick");
 				}
 			});
-			
+
 			$(document).on('click','.navbar-collapse.in',function(e) {
 			if( $(e.target).is('a') && $(e.target).attr('class') != 'dropdown-toggle' ) {
 				$(this).collapse('hide');
 			}
-			});			
-		/*END MENU JS*/ 
-		
+			});
+		/*END MENU JS*/
+
 		/* START PORTFOLIO JS */
 		jQuery('.grid').mixitup({
 		targetSelector: '.mix',
 		});
-		
+
 			$('.image-popup').magnificPopup({
 				type: 'image',
 				closeOnContentClick: true,
@@ -57,7 +57,7 @@ Version      : 1.0
 				},
 			});
 		/* END PORTFOLIO JS */
-		
+
 		/* START TESTIMONIAL JS */
 			$("#testimonial-slider").owlCarousel({
 				items:2,
@@ -71,7 +71,7 @@ Version      : 1.0
 				autoPlay:false
 			});
 		/* END TESTIMONIAL JS */
-	
+
 		/* START COUNTDOWN JS*/
 		$('.counter_feature').bind('inview', function(event, visible, visiblePartX, visiblePartY) {
 			if (visible) {
@@ -88,7 +88,7 @@ Version      : 1.0
 				$(this).unbind('inview');
 			}
 		});
-		/* END COUNTDOWN JS */		
+		/* END COUNTDOWN JS */
 
 		/*START PARTNER LOGO*/
 		$('.partner').owlCarousel({
@@ -97,14 +97,14 @@ Version      : 1.0
 		  itemsDesktop : [1199,3],
 		  itemsDesktopSmall : [979,3]
 		});
-		/*END PARTNER LOGO*/	 
+		/*END PARTNER LOGO*/
 
-	}); 	
+	});
 
-	
-				
+
+
 })($);
 
 
-  
+
 
