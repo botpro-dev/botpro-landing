@@ -249,14 +249,17 @@
 							<h3>Оставьте ваш номер телефона</h3>
 							<p>и мы обязательно свяжемся с вами</p>
 							<!-- Replace the form action in the line below with your MailChimp embed action! -->
-							<form novalidate="" target="_blank" class="validate" name="mc-embedded-subscribe-form" method="post" action="#">
-								<input type="email" placeholder="Ваш номер телефона..." id="mce-email" class="form-control" name="EMAIL">
-								<span><button class="btn btn-default btn-light-bg-three" name="subscribe" type="submit">Отправить</button></span>
+							<div class="validate" name="mc-embedded-subscribe-form">
+								<input type="tel" placeholder="Ваш номер телефона..." id="callBackPhoneNumber" class="form-control">
+								<p id="phoneNumberSubmitting" style="display: none;">Подождите, пожалуйста ...</p>
+								<p id="phoneNumberSubmitSucceeded" style="display: none;">Спасибо, мы вам позвоним!</p>
+								<p id="phoneNumberSubmitFailed" style="display: none;">Произошла ошибка! Попробуйте отправить ваш номер телефона ещё раз, пожалуйста!</p>
+								<span><button id="submitPhoneNumberBtn" class="btn btn-default btn-light-bg-three" name="subscribe">Отправить</button></span>
 								<div id="mce-responses">
 									<div style="display:none" id="mce-error-response" class="response"></div>
 									<div style="display:none" id="mce-success-response" class="response"></div>
 								</div>
-							</form>
+							</div>
 						</div>
 					</div><!--- END COL -->
 				</div><!--- END ROW -->
@@ -526,5 +529,29 @@
 			<script src="assets/js/scrolltopcontrol.js"></script>
 		<!-- scripts js -->
 			<script src="assets/js/scripts.js"></script>
+
+			<script>
+				$( "#submitPhoneNumberBtn" ).click(function() {
+					$("#phoneNumberSubmitting").show();
+					$("#phoneNumberSubmitSucceeded").hide();
+					$("#phoneNumberSubmitFailed").hide();
+					$('#submitPhoneNumberBtn').prop('disabled', true);
+					$.post( "https://hooks.slack.com/services/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",
+									"payload={ \"text\": \"" + $('#callBackPhoneNumber').val() + "\" }" )
+									.done(function() {
+										$("#phoneNumberSubmitFailed").hide();
+				    				$("#phoneNumberSubmitSucceeded").show();
+				  				})
+									.fail(function() {
+										$("#phoneNumberSubmitSucceeded").hide();
+				    				$("#phoneNumberSubmitFailed").show();
+										$('#submitPhoneNumberBtn').prop('disabled', false);
+				  				})
+									.always(function() {
+										$("#phoneNumberSubmitting").hide();
+				  				});
+				});
+			</script>
+
     </body>
 </html>
